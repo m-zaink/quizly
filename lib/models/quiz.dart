@@ -2,16 +2,15 @@
 // Created by Mohammed Sadiq on 25/05/20.
 // **
 import 'package:meta/meta.dart';
-import 'package:quizly/models/quiz_settings.dart';
 
 class Quiz {
   final int index;
   final String question;
   final String rightAnswer;
   final List<String> wrongAnswers;
-  final Difficulty difficulty;
-  final Category category;
-  final QuestionType questionType;
+  final String difficulty;
+  final String category;
+  final String questionType;
 
   Quiz({
     @required this.index,
