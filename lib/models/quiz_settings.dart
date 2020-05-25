@@ -44,15 +44,23 @@ class QuizSettings {
       };
 
   static Map<QuestionType, String> get questionTypes => {
-    QuestionType.any: 'Any',
-    QuestionType.binary: 'True / False Type',
-    QuestionType.multipleChoice: 'Multiple Choice Type'
-  };
+        QuestionType.any: 'Any',
+        QuestionType.trueOfFalse: 'True / False',
+        QuestionType.multipleChoice: 'Multiple Choice'
+      };
+
+  static int get defaultNumberOfQuestions => 10;
+
+  static Category get defaultCategory => Category.any;
+
+  static Difficulty get defaultDifficulty => Difficulty.any;
+
+  static QuestionType get defaultType => QuestionType.any;
 }
 
 enum Difficulty { any, easy, medium, hard }
 
-enum QuestionType { any, binary, multipleChoice }
+enum QuestionType { any, trueOfFalse, multipleChoice }
 
 enum Category {
   any,
