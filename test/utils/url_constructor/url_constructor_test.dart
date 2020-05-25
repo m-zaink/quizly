@@ -24,7 +24,7 @@ void main() {
               'https://opentdb.com/api.php?amount=${QuizSettings.defaultNumberOfQuestions}';
 
           // Act
-          String actualURL = URLConstructor.constructURL(quizSettings);
+          String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
           // Assert
           expect(actualURL, expectedURL);
@@ -39,7 +39,7 @@ void main() {
           quizSettings.numberOfQuestions = 20;
 
           // Act
-          String actualURL = URLConstructor.constructURL(quizSettings);
+          String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
           // Assert
           expect(actualURL, expectedURL);
@@ -66,7 +66,7 @@ void main() {
         quizSettings.category = Category.anime;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL, expectedURL);
@@ -80,7 +80,7 @@ void main() {
         quizSettings.category = Category.any;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL.contains('category'), false);
@@ -106,7 +106,7 @@ void main() {
         quizSettings.difficulty = Difficulty.medium;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL, expectedURL);
@@ -120,7 +120,7 @@ void main() {
         quizSettings.difficulty = Difficulty.any;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL.contains('difficulty'), false);
@@ -146,7 +146,7 @@ void main() {
         quizSettings.questionType = QuestionType.trueOfFalse;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL, expectedURL);
@@ -160,7 +160,7 @@ void main() {
         quizSettings.difficulty = Difficulty.any;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL.contains('type'), false);
@@ -188,7 +188,7 @@ void main() {
         quizSettings.difficulty = Difficulty.medium;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL, expectedURL);
