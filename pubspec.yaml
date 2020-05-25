@@ -14,6 +14,9 @@ dependencies:
 
   # External dependencies
   cupertino_icons: ^0.1.3
+  flutter_bloc: ^4.0.0
+  equatable: ^1.1.1
+  http: ^0.12.1
 
 dev_dependencies:
   flutter_test:
