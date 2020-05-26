@@ -3,7 +3,7 @@
 // **
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quizly/models/quiz_settings.dart';
+import 'package:quizly/domain/entities/quiz_settings.dart';
 import 'package:quizly/utils/url_constructor/url_constructor.dart';
 
 void main() {
@@ -58,11 +58,11 @@ void main() {
     });
 
     test(
-      'should create a URL with amount = ${QuizSettings.defaultNumberOfQuestions} and category = ${Category.anime.index + 10}',
+      'should create a URL with amount = ${QuizSettings.defaultNumberOfQuestions} and category = ${Category.anime.index + 8}',
       () {
         // Arrange
         String expectedURL =
-            'https://opentdb.com/api.php?amount=${QuizSettings.defaultNumberOfQuestions}&category=${Category.anime.index + 10}';
+            'https://opentdb.com/api.php?amount=${QuizSettings.defaultNumberOfQuestions}&category=${Category.anime.index + 8}';
         quizSettings.category = Category.anime;
 
         // Act
@@ -178,11 +178,11 @@ void main() {
     });
 
     test(
-      'should create a URL with amount = ${QuizSettings.defaultNumberOfQuestions}, category = ${Category.anime.index + 10}, type = boolean, and difficulty = medium,',
+      'should create a URL with amount = ${QuizSettings.defaultNumberOfQuestions}, category = ${Category.anime.index + 8}, type = boolean, and difficulty = medium,',
       () {
         // Arrange
         String expectedURL =
-            'https://opentdb.com/api.php?amount=${QuizSettings.defaultNumberOfQuestions}&category=${Category.anime.index + 10}&type=boolean&difficulty=medium';
+            'https://opentdb.com/api.php?amount=${QuizSettings.defaultNumberOfQuestions}&category=${Category.anime.index + 8}&type=boolean&difficulty=medium';
         quizSettings.category = Category.anime;
         quizSettings.questionType = QuestionType.trueOfFalse;
         quizSettings.difficulty = Difficulty.medium;

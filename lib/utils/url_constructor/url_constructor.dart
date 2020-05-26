@@ -2,7 +2,7 @@
 // Created by Mohammed Sadiq on 25/05/20.
 // **
 
-import 'package:quizly/models/quiz_settings.dart';
+import 'package:quizly/domain/entities/quiz_settings.dart';
 import 'package:meta/meta.dart';
 
 class URLConstructor {
@@ -10,7 +10,7 @@ class URLConstructor {
     String url =
         'https://opentdb.com/api.php?amount=${settings.numberOfQuestions}';
     if (settings.category != Category.any) {
-      url += '&category=${settings.category.index + 10}';
+      url += '&category=${settings.category.index + 8}';
     }
 
     if (settings.questionType != QuestionType.any) {
