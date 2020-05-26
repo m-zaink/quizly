@@ -4,14 +4,10 @@
 
 import 'package:flutter/foundation.dart' as foundation;
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
-import 'package:quizly/models/quiz_settings.dart';
-import 'package:quizly/models/session.dart';
-import 'package:quizly/reusable_components/choice_screen/choice_screen.dart';
-import 'package:quizly/reusable_components/web_aware_body/web_aware_body.dart';
-import 'package:quizly/screens/quiz_screen/quiz_bloc/bloc.dart';
-import 'package:quizly/screens/quiz_screen/quiz_screen.dart';
+import 'package:quizly/domain/entities/quiz_settings.dart';
+import 'package:quizly/presentation/reusable_components/choice_screen/choice_screen.dart';
+import 'package:quizly/presentation/reusable_components/web_aware_body/web_aware_body.dart';
+import 'package:quizly/presentation/screens/quiz_screen/quiz_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

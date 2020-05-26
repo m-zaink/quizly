@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:quizly/models/quiz.dart';
+import 'package:quizly/domain/entities/quiz.dart';
 import 'package:meta/meta.dart';
 
 abstract class QuizState extends Equatable {
@@ -9,7 +9,7 @@ abstract class QuizState extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadingQuizState extends QuizState {}
+class QuizLoadingState extends QuizState {}
 
 class ActiveQuizState extends QuizState {
   final Quiz quiz;

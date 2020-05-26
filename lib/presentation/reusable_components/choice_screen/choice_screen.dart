@@ -2,7 +2,7 @@
 // Created by Mohammed Sadiq on 25/05/20.
 // **
 import 'package:flutter/material.dart';
-import 'package:quizly/reusable_components/web_aware_body/web_aware_body.dart';
+import 'package:quizly/presentation/reusable_components/web_aware_body/web_aware_body.dart';
 
 class ChoiceScreen extends StatelessWidget {
   final String title;

@@ -1,24 +1,16 @@
 // **
-// Created by Mohammed Sadiq on 25/05/20.
+// Created by Mohammed Sadiq on 26/05/20.
 // **
 
 import 'dart:convert';
 
 import 'package:html_unescape/html_unescape.dart';
-import 'package:meta/meta.dart';
-
-import 'package:quizly/models/quiz.dart';
-import 'package:quizly/models/quiz_settings.dart';
-import 'package:quizly/utils/url_constructor/url_constructor.dart';
 import 'package:http/http.dart' as http;
 
-abstract class QuizRepository {
-  factory QuizRepository() {
-    return QuizRepositoryImpl();
-  }
-
-  Future<List<Quiz>> fetchQuizzes({@required QuizSettings settings});
-}
+import 'package:quizly/domain/entities/quiz.dart';
+import 'package:quizly/domain/entities/quiz_settings.dart';
+import 'package:quizly/domain/repositories/quiz_repository.dart';
+import 'package:quizly/utils/url_constructor/url_constructor.dart';
 
 class QuizRepositoryImpl implements QuizRepository {
   @override
@@ -29,7 +21,6 @@ class QuizRepositoryImpl implements QuizRepository {
     );
 
     try {
-      // TODO: Make HTTP calls here
       http.Response response = await http.get(url);
       Map<String, dynamic> body = json.decode(response.body);
       if (body['response_code'] == 0) {

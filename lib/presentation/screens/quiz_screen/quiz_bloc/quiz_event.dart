@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:quizly/models/quiz.dart';
+import 'package:quizly/domain/entities/quiz.dart';
 
 abstract class QuizEvent extends Equatable {
   @override

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizly/models/session.dart';
-import 'package:quizly/screens/home_screen/home_screen.dart';
+import 'package:quizly/presentation/screens/home_screen/home_screen.dart';
 import 'package:uuid/uuid.dart';
+
+import 'domain/entities/session.dart';
 
 void main() => runApp(QuizlyApp());
 
