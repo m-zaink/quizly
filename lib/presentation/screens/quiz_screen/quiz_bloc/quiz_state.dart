@@ -11,10 +11,10 @@ abstract class QuizState extends Equatable {
 
 class QuizLoadingState extends QuizState {}
 
-class ActiveQuizState extends QuizState {
+class QuizActiveState extends QuizState {
   final Quiz quiz;
 
-  ActiveQuizState({
+  QuizActiveState({
     @required this.quiz,
   });
 
