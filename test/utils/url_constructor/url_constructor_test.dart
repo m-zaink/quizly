@@ -3,7 +3,7 @@
 // **
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quizly/models/quiz_settings.dart';
+import 'package:quizly/domain/entities/quiz_settings.dart';
 import 'package:quizly/utils/url_constructor/url_constructor.dart';
 
 void main() {
@@ -24,7 +24,7 @@ void main() {
               'https://opentdb.com/api.php?amount=${QuizSettings.defaultNumberOfQuestions}';
 
           // Act
-          String actualURL = URLConstructor.constructURL(quizSettings);
+          String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
           // Assert
           expect(actualURL, expectedURL);
@@ -39,7 +39,7 @@ void main() {
           quizSettings.numberOfQuestions = 20;
 
           // Act
-          String actualURL = URLConstructor.constructURL(quizSettings);
+          String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
           // Assert
           expect(actualURL, expectedURL);
@@ -58,15 +58,15 @@ void main() {
     });
 
     test(
-      'should create a URL with amount = ${QuizSettings.defaultNumberOfQuestions} and category = ${Category.anime.index + 10}',
+      'should create a URL with amount = ${QuizSettings.defaultNumberOfQuestions} and category = ${Category.anime.index + 8}',
       () {
         // Arrange
         String expectedURL =
-            'https://opentdb.com/api.php?amount=${QuizSettings.defaultNumberOfQuestions}&category=${Category.anime.index + 10}';
+            'https://opentdb.com/api.php?amount=${QuizSettings.defaultNumberOfQuestions}&category=${Category.anime.index + 8}';
         quizSettings.category = Category.anime;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL, expectedURL);
@@ -80,7 +80,7 @@ void main() {
         quizSettings.category = Category.any;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL.contains('category'), false);
@@ -106,7 +106,7 @@ void main() {
         quizSettings.difficulty = Difficulty.medium;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL, expectedURL);
@@ -120,7 +120,7 @@ void main() {
         quizSettings.difficulty = Difficulty.any;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL.contains('difficulty'), false);
@@ -146,7 +146,7 @@ void main() {
         quizSettings.questionType = QuestionType.trueOfFalse;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL, expectedURL);
@@ -160,7 +160,7 @@ void main() {
         quizSettings.difficulty = Difficulty.any;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL.contains('type'), false);
@@ -178,17 +178,17 @@ void main() {
     });
 
     test(
-      'should create a URL with amount = ${QuizSettings.defaultNumberOfQuestions}, category = ${Category.anime.index + 10}, type = boolean, and difficulty = medium,',
+      'should create a URL with amount = ${QuizSettings.defaultNumberOfQuestions}, category = ${Category.anime.index + 8}, type = boolean, and difficulty = medium,',
       () {
         // Arrange
         String expectedURL =
-            'https://opentdb.com/api.php?amount=${QuizSettings.defaultNumberOfQuestions}&category=${Category.anime.index + 10}&type=boolean&difficulty=medium';
+            'https://opentdb.com/api.php?amount=${QuizSettings.defaultNumberOfQuestions}&category=${Category.anime.index + 8}&type=boolean&difficulty=medium';
         quizSettings.category = Category.anime;
         quizSettings.questionType = QuestionType.trueOfFalse;
         quizSettings.difficulty = Difficulty.medium;
 
         // Act
-        String actualURL = URLConstructor.constructURL(quizSettings);
+        String actualURL = URLConstructor.constructURL(settings: quizSettings);
 
         // Assert
         expect(actualURL, expectedURL);
