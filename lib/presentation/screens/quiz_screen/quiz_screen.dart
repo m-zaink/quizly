@@ -38,9 +38,7 @@ class QuizScreen extends StatelessWidget {
         child: Scaffold(
           appBar: appBar,
           body: WebAwareBody(
-            child: SingleChildScrollView(
-              child: body,
-            ),
+            child: body,
           ),
         ),
       ),
@@ -72,8 +70,8 @@ class QuizScreen extends StatelessWidget {
     if (quizIsLoadingOrCompleted) {
       Navigator.pop(context);
     } else {
-      bool isNotFirstQuestion = !(state.runtimeType == ActiveQuizState &&
-          (state as ActiveQuizState).quiz.index == 0);
+      bool isNotFirstQuestion = !(state.runtimeType == QuizActiveState &&
+          (state as QuizActiveState).quiz.index == 0);
 
       if (isNotFirstQuestion) {
         BlocProvider.of<QuizBloc>(context).add(
@@ -144,20 +142,30 @@ class QuizScreen extends StatelessWidget {
             return progressIndicator;
           }
 
-          if (state.runtimeType == ActiveQuizState) {
-            Quiz quiz = (state as ActiveQuizState).quiz;
-            return QuizCard(quiz: quiz);
+          if (state.runtimeType == QuizActiveState) {
+            return quizCard;
           }
 
-          if (state.runtimeType == QuizCompleteState) return quizCompleteCard;
+          if (state.runtimeType == QuizCompleteState) {
+            return quizCompleteCard;
+          }
 
-          return somethingWentWrong;
+          return somethingWentWrongCard;
         },
       );
 
   Widget get progressIndicator => Center(
         child: SpinKitWanderingCubes(
           color: Colors.orange,
+        ),
+      );
+
+  Widget get quizCard => Builder(
+        builder: (context) => SingleChildScrollView(
+          child: QuizCard(
+            quiz: (BlocProvider.of<QuizBloc>(context).state as QuizActiveState)
+                .quiz,
+          ),
         ),
       );
 
@@ -268,14 +276,16 @@ class QuizScreen extends StatelessWidget {
         ),
       );
 
-  Widget get somethingWentWrong => Container(
-        padding: EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            errorDetailsCard,
-            letsGoBackCTA,
-          ],
+  Widget get somethingWentWrongCard => SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              errorDetailsCard,
+              letsGoBackCTA,
+            ],
+          ),
         ),
       );
 
@@ -289,9 +299,10 @@ class QuizScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-//                  (BlocProvider.of<QuizBloc>(context)?.state as QuizErrorState)
-//                          .error ??
-                  'Sorry. Something went wrong...',
+                  (BlocProvider.of<QuizBloc>(context)?.state as QuizErrorState)
+                          .error ??
+                      'Sorry. Something went wrong...',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,

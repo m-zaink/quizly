@@ -1,4 +1,7 @@
 import 'dart:async';
+import 'package:connectivity/connectivity.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import 'package:quizly/domain/entities/quiz.dart';
@@ -28,6 +31,18 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   Stream<QuizState> mapEventToState(
     QuizEvent event,
   ) async* {
+    if (!kIsWeb) {
+      Connectivity connectivity = Connectivity();
+      ConnectivityResult connectivityResult =
+          await connectivity.checkConnectivity();
+
+      if (connectivityResult == ConnectivityResult.none) {
+        yield QuizErrorState(
+            'Uh oh. Looks like you aren\'t connected to the internet!');
+        return;
+      }
+    }
+
     switch (event.runtimeType) {
       case LoadQuizzesEvent:
         currentQuizIndex = 0;
@@ -41,7 +56,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
           userAnswers = List.generate(quizzesFromRepo.length, (index) => '');
           quizzes.addAll(quizzesFromRepo);
 
-          yield ActiveQuizState(quiz: quizzes[currentQuizIndex]);
+          yield QuizActiveState(quiz: quizzes[currentQuizIndex]);
         } else {
           yield QuizErrorState('Sorry! Something went wrong...');
         }
@@ -55,13 +70,13 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
             userScore: userScore,
           );
         } else {
-          yield ActiveQuizState(quiz: quizzes[++currentQuizIndex]);
+          yield QuizActiveState(quiz: quizzes[++currentQuizIndex]);
         }
         break;
 
       case PreviousQuestionEvent:
         if (currentQuizIndex > 0) {
-          yield ActiveQuizState(quiz: quizzes[--currentQuizIndex]);
+          yield QuizActiveState(quiz: quizzes[--currentQuizIndex]);
         }
         break;
     }
