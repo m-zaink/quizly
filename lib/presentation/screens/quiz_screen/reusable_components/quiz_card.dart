@@ -48,6 +48,9 @@ class QuizCard extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(
+            height: 40.0,
+          )
         ],
       );
 

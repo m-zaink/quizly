@@ -18,13 +18,14 @@ class WebAwareBody extends StatelessWidget {
     Widget safeArea = SafeArea(
       child: child,
     );
+
     return kIsWeb
         ? Center(
-          child: FractionallySizedBox(
+            child: FractionallySizedBox(
               widthFactor: widthFactor(context),
               child: safeArea,
             ),
-        )
+          )
         : safeArea;
   }
 

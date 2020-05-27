@@ -38,7 +38,9 @@ class QuizScreen extends StatelessWidget {
         child: Scaffold(
           appBar: appBar,
           body: WebAwareBody(
-            child: body,
+            child: SingleChildScrollView(
+              child: body,
+            ),
           ),
         ),
       ),
